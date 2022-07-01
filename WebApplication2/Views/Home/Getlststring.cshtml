@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.title = "Fruits List";
+}
+
+<h2>Fruits List</h2>
+<ul>
+    @foreach (string strfruit in ViewBag.fruits)
+    {
+        <li>@strfruit</li>
+    }
+</ul>

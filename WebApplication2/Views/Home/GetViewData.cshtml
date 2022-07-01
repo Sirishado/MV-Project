@@ -1,0 +1,11 @@
+﻿@{
+   ViewData["Title"] = "Fruits List";
+}
+
+<h2>Fruits List</h2>
+<ol>
+    @foreach (string strfruit in (List<string>) ViewData["Fruits"])
+    {
+        <li>@strfruit</li>
+    }
+</ol>

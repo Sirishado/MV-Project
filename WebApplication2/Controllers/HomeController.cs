@@ -18,29 +18,63 @@ namespace WebApplication2.Controllers
             _logger = logger;
         }
 
-        public ActionResult GetData()
+        public string GetString()
         {
-            List<GetData> lstfruits = new List<GetData>();
-            GetData fruits = new();
-            fruits.Name = "Mango";
-            fruits.Colour = "Green";
-            lstfruits.Add(fruits);
-            GetData fruits1 =new();
-            fruits1.Name = "Apple";
-            fruits1.Colour = "Red";
-            lstfruits.Add(fruits1);
-            return View(lstfruits);
+            return "Welcome to MVC";
         }
 
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+        public ActionResult GetlstString()
+        {
+           ViewBag.fruits = new List<string>()
+            {
+                "Mango",
+                "Apple",
+                "Banana",
+                "Grapes"
+            };
+            return View();
+            
+        }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        public ActionResult GetViewData()
+        {
+            ViewData["Fruits"] = new List<string>()
+            {
+                "Mango",
+                "Apple",
+                "Banana",
+                "Grapes"
+            };
+            return View();
+
+        }
+
+        public ActionResult GetData()
+        {
+            
+            GetData fruits = new GetData();
+            fruits.Name = "Mango";
+            fruits.Colour = "Green";
+            ViewBag.Message = fruits;
+            return View();
+        }
+
+
+        public ActionResult GetListData()
+        {
+            List<GetData> lstfruits = new List<GetData>();
+            GetData fruits = new GetData();
+            fruits.Name = "Mango";
+            fruits.Colour = "Green";
+            GetData fruits1 = new GetData();
+            fruits1.Name = "Apple";
+            fruits1.Colour = "Red";
+            lstfruits.Add(fruits);
+            lstfruits.Add(fruits1);
+            ViewBag.Message1 = lstfruits;
+            return View();
+        }
+
+
     }
 }

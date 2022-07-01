@@ -1,0 +1,33 @@
+﻿
+@{ 
+
+}
+
+<table>
+
+    <tr>
+        <th>
+            <h4> Fruit Name</h4>
+        </th>
+        <th>
+            <h4> Fruit Colour</h4>
+        </th>
+
+    </tr>
+   
+        @foreach (GetData data in ViewBag.Message1)
+        {
+            <tr>
+           <td>
+            @data.Name
+           </td>
+           <td>
+            @data.Colour
+           </td>
+         </tr>
+        }
+
+   
+
+</table>
+

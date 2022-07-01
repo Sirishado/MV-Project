@@ -1,23 +1,29 @@
-﻿@page
-@model WebApplication2.Models.GetData
-@{
+﻿
+@{ 
+    var data = ViewBag.Message;
+}
+   
+    <h2> Fruit Details </h2>
     <table>
+
         <tr>
-            <th>@Html.DisplayNameFor(model=>model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.Colour)</th>
+            <td>
+                <h5> Fruit Name  : </h5>
+            </td>
+            <td>
+                @data.Name
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <h5> Fruit Colour  :</h5>
+            </td>
+            <td>
+                @data.Colour
+            </td>
+
         </tr>
 
-        @foreach(var item in Model)
-            {
-    <tr>
-        <td>
-            @Html.DisplayNameFor(modelitem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayNameFor(modelitem => item.Colour)
-        </td>
-
-    </tr>
-            }
     </table>
-}
+
