@@ -1,0 +1,99 @@
+﻿
+@{
+    @model  WebApplication2.Models.Register
+}
+<div>
+<h2 class="heading mb-2 mob-center mob-center">Registration Form</h2>
+    </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="firstName" class="form-label fs-6">First Name<span class="mand">*</span></label>
+            <div class="position-relative">
+                <span class="floating-label">Please enter your first name</span>
+                <input type="text" class="form-control" id="firstName" min="2" max="80">
+                @Html.HiddenFor(model => model.FirstName, new { id = "FirstName" })
+            </div>
+
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="lastName" class="form-label fs-6">Last Name<span class="mand">*</span></label>
+            <div class="position-relative">
+                <span class="floating-label">Please enter your last name</span>
+                <input type="text" class="form-control" id="lastName" />
+                @Html.HiddenFor(model => model.LastName, new { id = "LastName" })
+            </div>
+
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="email" class="form-label fs-6">Email<span class="mand">*</span></label>
+            <div class="position-relative">
+                <span class="floating-label">Please enter your email</span>
+                <input type="text" class="form-control" id="email" min="6" max="50" />
+                @Html.HiddenFor(model => model.Email, new { id = "Email" })
+            </div>
+
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="userName" class="form-label fs-6">Username<span class="mand">*</span></label>
+            <div class="position-relative">
+                <span class="floating-label">Type in alphanumerical characters</span>
+                <input type="text" class="form-control" id="userName" />
+                @Html.HiddenFor(model => model.UserName, new { id = "UserName" })
+            </div>
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="mobileNumber" class="form-label fs-6">Mobile Number<span class="mand">*</span></label>
+                <div class="position-relative">
+                    <span class="floating-label">Please enter your mobile number</span>
+                    <input type="text" class="form-control" id="mobileNumber" min="2" max="12">
+                    @Html.HiddenFor(model => model.MobileNumber, new { id = "mobileNumber" })
+                </div>
+
+                @Html.ValidationMessageFor(m => m.MobileNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label type="password" for="password" class="form-label fs-6">Password<span class="mand">*</span></label>
+                <div class="position-relative">
+                    <span class="floating-label">Enter 8 to 20 characters</span>
+                    <input type="password" class="form-control pass-onhover" id="password" />
+                    <div class="hover-passlwngth">
+                        <span>At least:</span>
+                        <span>8 characters</span>
+                        <span>1 uppercase</span>
+                        <span>1 lowercase</span>
+                        <span>1 number</span>
+                        <span>1 special character</span>
+                    </div>
+                    @Html.HiddenFor(model => model.Password, new { id = "Password" })
+                </div>
+                <i class="icons password iconsize-20" id="passIcon"></i>
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+       
+            <div class="text-center">
+                <a class="text-decoration-none mybutton" asp-action="Register" asp-route-returnUrl="">Register</a>
+            </div>
+
+       
+    </div>
+

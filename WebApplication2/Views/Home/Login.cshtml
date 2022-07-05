@@ -1,0 +1,34 @@
+﻿
+@{
+    @model WebApplication2.Models.Login
+}
+
+<div class="form-group">
+    <label for="exampleFormControlInput1" class="fs-6">Username / Email<span class="mand">*</span></label>
+    <div class="position-relative">
+        <span class="floating-label">Please enter email</span>
+        <input type="text" class="form-control" id="exampleFormControlInput1" />
+        @Html.HiddenFor(model => model.Email, new { id = "username" })
+    </div>
+   
+    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+</div>
+<div class="form-group mb-">
+    <span class="d-flex align-items-start justify-content-between w-100p">
+        <label for="exampleFormControlInput1" class="fs-6">Password<span class="mand">*</span></label>
+       
+    </span>
+    <div class="position-relative">
+        <span class="floating-label">Please enter your password</span>
+        <input type="password" class="form-control" id="password" />
+        @Html.HiddenFor(model => model.Password, new { id = "password1" })
+    </div>
+    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    <i class="icons password iconsize-20" id="passwordIcon"></i>
+</div>
+    <div class="sectiongap mt-4">
+        
+        <a class="text-decoration-none mybutton" asp-action="LogIn" asp-route-returnUrl="">LogIn</a>
+    </div>
+
+</div>
