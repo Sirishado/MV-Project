@@ -3,6 +3,10 @@
     @model WebApplication2.Models.Login
 }
 
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div>
 <div class="form-group">
     <label for="exampleFormControlInput1" class="fs-6">Username / Email<span class="mand">*</span></label>
     <div class="position-relative">
@@ -26,9 +30,9 @@
     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
     <i class="icons password iconsize-20" id="passwordIcon"></i>
 </div>
-    <div class="sectiongap mt-4">
-        
-        <a class="text-decoration-none mybutton" asp-action="LogIn" asp-route-returnUrl="">LogIn</a>
-    </div>
-
+    
+<div class="text-center">
+    <input type ="submit" value="LogIn"/>
 </div>
+</div>
+}

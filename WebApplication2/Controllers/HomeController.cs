@@ -20,7 +20,7 @@ namespace WebApplication2.Controllers
             _logger = logger;
         }
 
-        
+        SqlConnection con = new SqlConnection("Data Source =tcp:smartcursors.public.3d8c9fc1c5b1.database.windows.net,3342 ;Initial Catalog =SmartcursorTST;User Id=SCMTSTUAT472DAA27;Password=ABEDDCCB75FEFB12DC6D;");
 
         public string GetString()
         {
@@ -53,15 +53,15 @@ namespace WebApplication2.Controllers
 
         }
 
-        public ActionResult GetData()
-        {
+        //public ActionResult GetData()
+        //{
             
-            GetData fruits = new GetData();
-            fruits.Name = "Mango";
-            fruits.Colour = "Green";
-            ViewBag.Message = fruits;
-            return View();
-        }
+        //    GetData fruits = new GetData();
+        //    fruits.Name = "Mango";
+        //    fruits.Colour = "Green";
+        //    ViewBag.Message = fruits;
+        //    return View();
+        //}
 
 
         public ActionResult GetListData()
@@ -80,25 +80,35 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register2()
         {
+            
             return View();
         }
         [HttpPost]
         public async Task<IActionResult>  Register(Register register)
         {
-            using (SqlConnection con =new SqlConnection())
+            string name = string.Empty;
+            con.Open();
+            string Query1 = "Select firstName from dbo.Register where Email='" + register.Email + "' and PassWord='" + register.Password + "'";
+            SqlCommand cmd1 = new SqlCommand(Query1, con);
+            name = Convert.ToString(cmd1.ExecuteScalar());
+            if(name!=string.Empty && name!=null)
             {
-                con.Open();
-                string Query = "Insert into Register Values('" + Guid.NewGuid() + "'," + register.FirstName + "," + register.LastName + "," + register.Email + "," + register.UserName + "," + register.Password + "," + register.MobileNumber + ")";
+
+                throw new Exception("Already User Exist");
+            }
+           
+            var newId = Guid.NewGuid();
+                string Query = "Insert into Register Values('"+newId+"','" + register.FirstName + "','" + register.LastName + "','" + register.Email + "','" + register.UserName + "','" + register.Password + "','" + register.MobileNumber + "',1)";
                 SqlCommand cmd = new SqlCommand(Query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-            }
-                return RedirectToAction(nameof(Login), "Home");
+            
+                return RedirectToAction(nameof(Login1), "Home");
         }
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login1()
         {
             return View();
         }
@@ -107,15 +117,14 @@ namespace WebApplication2.Controllers
         public string Login(Login login)
         {
             string name = string.Empty;
-            using (SqlConnection con = new SqlConnection())
-            {
+           
                 con.Open();
-                string Query = "Select top1 firstName from dbo.Register where Email=" + login.Email + " and PassWord=" + login.Password + "";
-                 SqlCommand cmd = new SqlCommand(Query, con);
-                 name = Convert.ToString(cmd.ExecuteScalar());
+                string Query = "Select firstName from dbo.Register where Email='" + login.Email + "' and PassWord='" + login.Password + "'";
+                SqlCommand cmd = new SqlCommand(Query, con);
+                name = Convert.ToString(cmd.ExecuteScalar());
 
                 con.Close();
-            }
+            
             if (name != string.Empty)
             {
                 return "Welcome to TCS";
@@ -124,6 +133,7 @@ namespace WebApplication2.Controllers
             {
                 return "Login Failed . Ener valid credentials";
             }
+
 
         }
     }
